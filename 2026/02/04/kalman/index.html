@@ -6,12 +6,18 @@
   
   <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
+  <meta name="description" content="矢量性不严谨 机体和状态空间方程的量之间的关系 测量与估计 一维：111. 只考虑内部干扰质量为m的机器人匀速自由运动$\Rightarrow$加速度$a&#x3D;0$机体：    ①    定义机器人的状态为$X$，状态$X$与位置$x$和速度$x’$有关$\Rightarrow$状态$X&#x3D;\begin{bmatrix}x \x’ \end{bmatrix}  $$\Rightarr">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:url" content="http://example.com/2026/02/04/kalman/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="矢量性不严谨 机体和状态空间方程的量之间的关系 测量与估计 一维：111. 只考虑内部干扰质量为m的机器人匀速自由运动$\Rightarrow$加速度$a&#x3D;0$机体：    ①    定义机器人的状态为$X$，状态$X$与位置$x$和速度$x’$有关$\Rightarrow$状态$X&#x3D;\begin{bmatrix}x \x’ \end{bmatrix}  $$\Rightarr">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="file:///C:/Users/19108/Desktop/ChatGPT%20Image%202026%E5%B9%B42%E6%9C%882%E6%97%A5%2007_21_15.png">
+<meta property="article:published_time" content="2026-02-03T16:38:34.722Z">
+<meta property="article:modified_time" content="2026-02-04T00:49:26.460Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="file:///C:/Users/19108/Desktop/ChatGPT%20Image%202026%E5%B9%B42%E6%9C%882%E6%97%A5%2007_21_15.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -68,39 +74,7 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-卡尔曼滤波" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2026/02/04/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/" class="article-date">
-  <time class="dt-published" datetime="2026-02-04T00:49:47.902Z" itemprop="datePublished">2026-02-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/350974281">(8 封私信 &#x2F; 78 条消息) 从全状态观测器到卡尔曼滤波器（六）姿态解算中的应用与代码 - 知乎</a>的卡尔曼滤波代码逻辑</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">int main()</span><br><span class="line">1. 初始化IMU</span><br><span class="line">2. 初始化卡尔曼滤波器</span><br><span class="line">    2.1 X = [gx,gy,gz]</span><br><span class="line">    2.2 H对角单位矩阵</span><br><span class="line">    2.3 I对角单位矩阵</span><br><span class="line">    2.4 P_pred= [100, 0.1  , 0.1,</span><br><span class="line">                 0.1 , 100 , 0.1,</span><br><span class="line">                 0.1 , 0.1 , 100]</span><br><span class="line">    2.5 Q对角矩阵 对角为过程噪声</span><br><span class="line">    2.6 R对角矩阵 对角为观测噪声</span><br><span class="line">while(1)</span><br><span class="line">&#123;</span><br><span class="line">    3. 获得处理后的IMU数据：gx,gy,gz,ax,ay,az</span><br><span class="line">    4. 卡尔曼滤波更新：</span><br><span class="line">        4.1 A = [  1   , gz*dt  ,-gy*dt;</span><br><span class="line">                -gz*dt ,    1   , gx*dt;</span><br><span class="line">                 gy*dt , -gx*dt ,   1   ]</span><br><span class="line">        4.2 X_prev = A * X</span><br><span class="line">        4.3 P_prev = A * P_pred * A^T + Q</span><br><span class="line">        4.4 Z = [ax,ay,az]</span><br><span class="line">        4.5 K = P_prev * (P_prev + R)^-1</span><br><span class="line">        4.6 err = z - X_prev</span><br><span class="line">        4.7 X_pred = X_prev + K*err</span><br><span class="line">        4.8 P_pred = (I - K) * P_prev</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2026/02/04/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/" data-id="cuidMo9oUTmqXqdpfx-I5ywgx" data-title="" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-kalman" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-kalman" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2026/02/04/kalman/" class="article-date">
   <time class="dt-published" datetime="2026-02-03T16:38:34.722Z" itemprop="datePublished">2026-02-04</time>
@@ -329,11 +303,23 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
+  
+    <a href="/2026/02/04/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+</nav>
 
   
+</article>
 
 
 </section>
