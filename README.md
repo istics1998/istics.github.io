@@ -6,20 +6,18 @@
 
                 |
 
-                —— 1.Publish_Kalman&Program 卡尔曼滤波 讲解及代码思路
+                —— 1.Publish_Wheel_SpeedCalculation&Kalman 速度计算&卡尔曼滤波（打滑检测）
 
-                —— 2.Publish_InvertedPendulum&Program 倒立摆 讲解及代码框架
+                —— 2.Publish_InvertedPendulum_VMC&LQR 二级倒立摆
 
         ——Picture 文章中用到的图片
 
                 |
 
-                —— Kalman 机器人运动示意
+                —— 1.Publish_Wheel_Kalman 机器人运动示意
 
-                —— InvertedPendulum-VMC VMC定义
+                —— 2.Publish_InvertedPendulum_VMC VMC定义
 
-                —— InvertedPendulum-LQR LQR定义
+                —— 2.Publish_InvertedPendulum_LQR LQR定义
 
-                —— InvertedPendulum-VMC+LQR 融合上述两张
-
-                ——InvertedPendulum-XYZ 坐标系
+                —— 2.Publish_InvertedPendulum_VMC&LQR 融合上述两张
