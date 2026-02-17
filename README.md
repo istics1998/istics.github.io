@@ -19,3 +19,7 @@
                 —— InvertedPendulum-VMC VMC定义
 
                 —— InvertedPendulum-LQR LQR定义
+
+                —— InvertedPendulum-VMC+LQR 融合上述两张
+
+                ——InvertedPendulum-XYZ 坐标系
