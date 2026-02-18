@@ -21,3 +21,13 @@
                 —— 2.Publish_InvertedPendulum_LQR LQR定义
 
                 —— 2.Publish_InvertedPendulum_VMC&LQR 融合上述两张
+
+    ——Model Simscape模型
+
+                                                |
+
+                                                ——Publish_InvertedPendulum 倒立摆模型
+
+    ——Video 仿真效果
+
+                                        ——Publish_InvertedPendulum 倒立摆模型效果
