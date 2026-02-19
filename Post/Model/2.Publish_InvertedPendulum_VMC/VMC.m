@@ -61,5 +61,4 @@ clear;clc;
     T1 = J11*Tp + J12*F;
     T4 = J21*Tp + J22*F;
 
-    % fprintf('phi1=%ff,phi2=%ff\nphi3=%ff,phi4=%ff\n',phi_1*180/pi,phi_2*180/pi,phi_3*180/pi,phi_4*180/pi);
     fprintf('运行结束，当前时间：%s\n', datetime("now"));
