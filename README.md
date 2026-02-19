@@ -26,8 +26,12 @@
 
                                                 |
 
-                                                ——Publish_InvertedPendulum 倒立摆模型
+                                                ——2.Publish_InvertedPendulum_LQR 倒立摆模型LQR验证
+
+                                                ——2.Publish_InvertedPendulum_VMC 倒立摆模型VMC验证
 
     ——Video 仿真效果
 
-                                        ——Publish_InvertedPendulum 倒立摆模型效果
+                                        ——2.Publish_InvertedPendulum_LQR 倒立摆LQR模型效果
+
+                                        ——2.Publish_InvertedPendulum_VMC 倒立摆VMC模型效果
